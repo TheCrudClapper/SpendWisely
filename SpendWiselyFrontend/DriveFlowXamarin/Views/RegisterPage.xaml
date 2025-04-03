@@ -19,7 +19,7 @@
                TextColor="{StaticResource PrimaryColor}"
                FontSize="50" />
         <Label Style="{StaticResource BasicLabelStyles}"
-               Text="Create an account so you can explore new places with our help !"
+               Text="Create an account so you can save more with our help !"
                HorizontalOptions="Center"
                Margin="0,0,0,70"
                HorizontalTextAlignment="Center"

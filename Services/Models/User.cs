@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +22,5 @@ namespace Services.Models
         public ICollection<Income> Incomes { get; set; } = new List<Income>();
 
         public ICollection<Budget> Budgets { get; set; } = new List<Budget>();
-        public ICollection<Report> Raports { get; set; } = new List<Report>();
     }
 }

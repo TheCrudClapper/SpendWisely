@@ -17,13 +17,10 @@ namespace Services.Models.DatabaseContexts
         public DbSet<RecurringExpense> RecurringExpenses { get; set; }
         public DbSet<Income> Incomes { get; set; }
         public DbSet<Budget> Budgets { get; set; }
-        public DbSet<Report> Reports { get; set; }
 
+        public DbSet<BudgetCategory> BudgetCategories  { get; set; }
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
-        public DatabaseContext()
-        {
-        }
     }
 }
 

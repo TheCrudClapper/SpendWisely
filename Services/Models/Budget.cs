@@ -17,5 +17,6 @@ namespace Services.Models
         public decimal AmountLimit { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public ICollection<BudgetCategory> BudgetCategories { get; set; } = new List<BudgetCategory>();
     }
 }

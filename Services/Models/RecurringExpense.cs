@@ -24,14 +24,9 @@ namespace Services.Models
         [ForeignKey("AccountId")]
         public Account Account { get; set; } = null!;
 
-        public int? CategoryId { get; set; }
+        public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         public Category Category { get; set; } = null!;
-
-        public int? UserCategoryId { get; set; }
-        [ForeignKey("UserCategoryId")]
-        public UserCategory UserCategory { get; set; }
-
         public int RepeatInterval { get; set; }
         public RepeatUnit RepeatUnit { get; set; }
         [Column(TypeName = "decimal(10, 2)")]

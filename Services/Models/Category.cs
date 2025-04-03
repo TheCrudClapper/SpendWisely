@@ -10,6 +10,8 @@ namespace Services.Models
     {
         public string Name { get; set; } = null!;
         public string? Description { get; set; }
+        public bool IsPredifined { get; set;  }
         public ICollection<UserCategory> UserCategories { get; set; } = new List<UserCategory>();
+        public ICollection<BudgetCategory> BudgetCategories { get; set; } = new List<BudgetCategory>();
     }
 }
