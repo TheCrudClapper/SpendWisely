@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Services.Models
 {
-    public class UserCategories : BaseModel
+    public class UserCategory : BaseModel
     {
         public int UserId { get; set; }
         [ForeignKey("UserId")]

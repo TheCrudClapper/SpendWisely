@@ -10,5 +10,6 @@ namespace Services.Models
     {
         public string Name { get; set; } = null!;
         public string? Description { get; set; }
+        public ICollection<UserCategory> UserCategories { get; set; } = new List<UserCategory>();
     }
 }

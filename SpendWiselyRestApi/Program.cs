@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using Services.Models.DatabaseContexts;
 
 namespace SpendWiselyRestApi
 {
@@ -7,6 +9,8 @@ namespace SpendWiselyRestApi
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddDbContext<DatabaseContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("SpendWisely")));
             // Add services to the container.
 
             builder.Services.AddControllers();
