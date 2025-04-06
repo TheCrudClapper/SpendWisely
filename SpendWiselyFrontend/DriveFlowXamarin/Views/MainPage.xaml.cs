@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using DriveFlowXamarin.ViewModels;
+using SpendWiselyFrontend.ViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace DriveFlowXamarin.Views
@@ -9,6 +11,7 @@ namespace DriveFlowXamarin.Views
         public MainPage()
         {
             InitializeComponent();
+            this.BindingContext = new MainPageViewModel();
         }
     }
 }

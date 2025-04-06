@@ -1,9 +1,10 @@
 ﻿using DriveFlowXamarin.Views;
+using SpendWiselyFrontend.ViewModels.Abstractions;
 using Xamarin.Forms;
 
 namespace DriveFlowXamarin.ViewModels
 {
-    public class LoginViewModel
+    public class LoginViewModel : BaseViewModel
     {
         public Command LoginCommand { get; }
         public Command GoToRegisterPageCommand { get; }

@@ -83,7 +83,7 @@
     <ShellItem Route="StartingPage">
         <ShellContent ContentTemplate="{DataTemplate local:StartingPage}"/>
     </ShellItem>
-    
+
     <FlyoutItem Title="Dashboard">
         <ShellContent Route="MainPage" ContentTemplate="{DataTemplate local:MainPage}" />
     </FlyoutItem>
@@ -92,22 +92,16 @@
         <ShellContent Route="ExpensesPage" ContentTemplate="{DataTemplate local:ExpensesPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Recuring Expenses">
-        <ShellContent Route="RecuringExpenses" ContentTemplate="{DataTemplate local:RecuringExpensesPage}" />
-    </FlyoutItem>
-    
+
     <FlyoutItem Title="Categories">
         <ShellContent Route="CategoriesPage" ContentTemplate="{DataTemplate local:CategoriesPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Income">
-        <ShellContent Route="IncomesPage" ContentTemplate="{DataTemplate local:IncomesPage}" />
-    </FlyoutItem>
-    
+
     <FlyoutItem Title="Raports">
         <ShellContent Route="RaportsPage" ContentTemplate="{DataTemplate local:RaportsPage}" />
     </FlyoutItem>
-   
+
     <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
     </MenuItem>
 

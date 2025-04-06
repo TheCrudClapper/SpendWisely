@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SpendWiselyFrontend.Views.BudgetViews.AddBudgetPage"
+             xmlns:vm="clr-namespace:SpendWiselyFrontend.ViewModels.BudgetViewModels"
+             BackgroundColor="{StaticResource DarkColor}"
+             >
+    
+    <ContentPage.BindingContext>
+        <vm:AddBudgetViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" Margin="0,5">
+                <Label Text="New Budget"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    VerticalOptions="Start" 
+                    HorizontalOptions="Start"
+                    FontFamily="Montserrat"
+                    Margin="10,5"/>
+                <Label Text="💰" FontSize="23"/>
+                <Button Text="🗑️" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0"/>
+                <Button Text="✔️" TextColor="Gray" HorizontalOptions="End" Margin="0,0,15,0"/>
+            </StackLayout>
+
+            <Grid Margin="5,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Entry Placeholder="Name" Grid.Column="0" />
+                <Entry Placeholder="Emoji" Grid.Column="1" HorizontalTextAlignment="Center" />
+                <Entry Placeholder="Money Limit" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" />
+                <Picker Grid.Row="3" Grid.Column="0" />
+                <Entry Placeholder="Number" Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="Center" />
+                <StackLayout  Grid.Row="4">
+                    <Label Text="Start Date"/>
+                    <DatePicker/>
+                </StackLayout>
+                <StackLayout  Grid.Row="5">
+                    <Label Text="End Date"/>
+                    <DatePicker/>
+                </StackLayout>
+                <Entry Placeholder="Description" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="100" VerticalTextAlignment="Top" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

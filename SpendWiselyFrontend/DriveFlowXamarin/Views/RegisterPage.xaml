@@ -30,7 +30,7 @@
                Style="{StaticResource BasicFrameStyles}"
                Margin="20, 10">
             <Entry Style="{StaticResource BasicEntryStyles}"
-                   x:Name="emailEntry"
+                   Text="{Binding Email}"
                    Placeholder="Enter your email"
                    TextColor="White"
                    HeightRequest="50"
@@ -40,10 +40,23 @@
         </Frame>
 
         <Frame Padding="0"
+           Style="{StaticResource BasicFrameStyles}"
+           Margin="20, 10">
+            <Entry Style="{StaticResource BasicEntryStyles}"
+               Text="{Binding Username}"
+               Placeholder="Enter your username"
+               TextColor="White"
+               HeightRequest="50"
+               FontSize="15"
+               BackgroundColor="{StaticResource SecondaryColor}"
+               HorizontalOptions="FillAndExpand" />
+        </Frame>
+        
+        <Frame Padding="0"
                Style="{StaticResource BasicFrameStyles}"
                Margin="20,10">
             <Entry Style="{StaticResource BasicEntryStyles}"
-                   x:Name="passwordEntry"
+                   Text="{Binding Password}"
                    Placeholder="Enter your password"
                    TextColor="White"
                    FontSize="15"
@@ -56,7 +69,7 @@
                Style="{StaticResource BasicFrameStyles}"
                Margin="20,10">
             <Entry Style="{StaticResource BasicEntryStyles}"
-                   x:Name="confirmPasswordEntry"
+                   Text="{Binding ConfirmPassword}"
                    Placeholder="Confirm password"
                    TextColor="White"
                    FontSize="15"
