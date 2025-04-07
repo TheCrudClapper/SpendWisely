@@ -19,9 +19,10 @@ namespace SpendWiselyFrontend.ClientServices
             };
         }
 
-        public Task<bool> DeleteAsync(string uri)
+        public async Task<bool> DeleteAsync(string uri)
         {
-            throw new NotImplementedException();
+            var response = await httpClient.DeleteAsync(uri);
+            return response.IsSuccessStatusCode;
         }
 
         public async Task<TResponse> GetAsync<TResponse>(string uri)
@@ -41,7 +42,7 @@ namespace SpendWiselyFrontend.ClientServices
             var content = SerializeContent(requestBody);
             var response = await httpClient.PostAsync(uri, content);
 
-            response.EnsureSuccessStatusCode(); // to rzuca wyjątek jeśli nie 2xx
+            response.EnsureSuccessStatusCode();
 
             var json = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<TResponse>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
@@ -54,9 +55,11 @@ namespace SpendWiselyFrontend.ClientServices
             return response.IsSuccessStatusCode;
         }
 
-        public Task<bool> PutAsync<TRequest>(string uri, TRequest requestBody)
+        public async Task<bool> PutAsync<TRequest>(string uri, TRequest requestBody)
         {
-            throw new NotImplementedException();
+            var content = SerializeContent(requestBody);
+            var response = await httpClient.PutAsync(uri, content);
+            return response.IsSuccessStatusCode;
         }
         private StringContent SerializeContent<TRequest>(TRequest requestBody)
         {

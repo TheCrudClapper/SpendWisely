@@ -25,6 +25,7 @@ namespace DriveFlowXamarin
             Routing.RegisterRoute(nameof(AddIncomePage), typeof(AddIncomePage));
             Routing.RegisterRoute(nameof(AddExpensePage), typeof(AddExpensePage));
             Routing.RegisterRoute(nameof(AddBudgetPage), typeof(AddBudgetPage));
+            Routing.RegisterRoute(nameof(EditAccountPage), typeof(EditAccountPage));
             //Routing.RegisterRoute(nameof(AddRecuringExpensePage), typeof(RecuringExpensePage));
         }
 

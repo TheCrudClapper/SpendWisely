@@ -41,14 +41,25 @@ namespace SpendWiselyRestApi.Controllers
         // PUT: api/Accounts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAccount(int id, Account account)
+        public async Task<IActionResult> PutAccount(int id, AccountDto accountDto)
         {
-            if (id != account.Id)
+
+            if (id != accountDto.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(account).State = EntityState.Modified;
+            var existingAccount = await _context.Accounts.FindAsync(id);
+            if (existingAccount == null)
+                return NotFound();
+
+            existingAccount.Name = accountDto.Name;
+            existingAccount.Balance = accountDto.Balance;
+            existingAccount.Description = accountDto.Description;
+            existingAccount.EmojiUrl = accountDto.EmojiUrl;
+            existingAccount.DateEdited = DateTime.Now;
+
+            _context.Entry(existingAccount).State = EntityState.Modified; ;
 
             try
             {
