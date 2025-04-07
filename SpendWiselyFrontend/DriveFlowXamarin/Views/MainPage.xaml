@@ -159,7 +159,14 @@
             <StackLayout>
                 <Frame BackgroundColor="{StaticResource LightDarkColor}">
                     <StackLayout Padding="0" Margin="0,-5">
-                        <Label Text="Categories" VerticalOptions="Start" FontAttributes="Bold"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Categories" VerticalOptions="Start" FontAttributes="Bold"/>
+                            <Label Text="↪️"  HorizontalOptions="EndAndExpand" FontSize="21">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OpenCategoriesPageCommand}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
                         <StackLayout Orientation ="Horizontal">
                             <Label FontSize="20" Text="🍽️"/>
                             <Label FontSize="12" Text="Food" VerticalOptions="Center"/>

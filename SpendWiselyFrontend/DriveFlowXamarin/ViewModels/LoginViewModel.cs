@@ -15,7 +15,7 @@ namespace DriveFlowXamarin.ViewModels
         }
         private async void OpenMainPage()
         {
-            await Shell.Current.GoToAsync($"//{nameof(MainPage)}");
+            await Shell.Current.GoToAsync($"/MainPage");
         }
         private async void OpenRegisterPage()
         {

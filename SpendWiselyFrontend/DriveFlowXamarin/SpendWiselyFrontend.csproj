@@ -18,6 +18,7 @@
     <None Remove="Images\income.png" />
     <None Remove="Images\logo.png" />
     <None Remove="Images\outcome.png" />
+    <None Remove="Images\piggy.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +27,7 @@
     <EmbeddedResource Include="Images\income.png" />
     <EmbeddedResource Include="Images\logo.png" />
     <EmbeddedResource Include="Images\outcome.png" />
+    <EmbeddedResource Include="Images\piggy.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,10 +53,7 @@
     <EmbeddedResource Update="Views\BudgetViews\BudgetsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\CategoriesPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ExpensesPage.xaml">
+    <EmbeddedResource Update="Views\CategoryViews\CategoriesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ExpenseViews\AddExpensePage.xaml">
@@ -76,9 +75,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\RegisterPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\StartingPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\TransactionViews\TransactionsPage.xaml">

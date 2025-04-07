@@ -1,5 +1,6 @@
 ﻿using DriveFlowXamarin.Views;
 using SpendWiselyFrontend.ViewModels.Abstractions;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace DriveFlowXamarin.ViewModels
@@ -16,8 +17,8 @@ namespace DriveFlowXamarin.ViewModels
 
         public RegisterViewModel()
         {
-            GoToLoginPageCommand = new Command(OpenLoginPage);
-            GoToMainPageCommand = new Command(OpenMainPage);
+            GoToLoginPageCommand = new Command(async () => await OpenLoginPage());
+            GoToMainPageCommand = new Command(async () => await OpenMainPage());
         }
 
         public string Email
@@ -44,13 +45,13 @@ namespace DriveFlowXamarin.ViewModels
             set => SetProperty(ref confirmPassword, value);
         }
 
-        private async void OpenLoginPage()
+        private async Task OpenLoginPage()
         {
-            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+            await Shell.Current.GoToAsync($"/{nameof(LoginPage)}");
         }
-        private async void OpenMainPage()
+        private async Task OpenMainPage()
         {
-            await Shell.Current.GoToAsync($"//{nameof(MainPage)}");
+            await Shell.Current.GoToAsync($"/{nameof(MainPage)}");
         }
     }
 }

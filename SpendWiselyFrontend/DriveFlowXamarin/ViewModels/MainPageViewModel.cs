@@ -1,12 +1,10 @@
-﻿using DriveFlowXamarin.Views;
-using SpendWiselyFrontend.Views;
-using SpendWiselyFrontend.Views.BudgetViews;
+﻿using SpendWiselyFrontend.Views.BudgetViews;
 using SpendWiselyFrontend.Views.AccountViews;
 using SpendWiselyFrontend.Views.TransactionViews;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using SpendWiselyFrontend.Views.CategoryViews;
 using Xamarin.Forms;
+using System.Threading.Tasks;
+
 
 namespace SpendWiselyFrontend.ViewModels
 {
@@ -15,23 +13,30 @@ namespace SpendWiselyFrontend.ViewModels
         public Command OpenAccountsPageCommand { get; set; }
         public Command OpenAccountsBudgetsCommand { get; set; }
         public Command OpenTransactionsCommand { get; set; }
+
+        public Command OpenCategoriesPageCommand { get; set; }
         public MainPageViewModel()
         {
-            OpenAccountsPageCommand = new Command(OpenAccountsPage);
-            OpenAccountsBudgetsCommand = new Command(OpenBudgetsPage);
-            OpenTransactionsCommand = new Command(OpenTransactionsPage);
+            OpenAccountsPageCommand = new Command(async () => await OpenAccountsPage());
+            OpenAccountsBudgetsCommand = new Command(async () => await OpenBudgetsPage());
+            OpenTransactionsCommand = new Command(async () => await OpenTransactionsPage());
+            OpenCategoriesPageCommand = new Command(async () => await OpenCategoriesPage());
         }
-        private async void OpenAccountsPage()
+        private async Task OpenAccountsPage()
         {
             await Shell.Current.GoToAsync($"/{nameof(AccountsPage)}");
         }
-        private async void OpenBudgetsPage()
+        private async Task OpenBudgetsPage()
         {
             await Shell.Current.GoToAsync($"/{nameof(BudgetsView)}");
         }
-        private async void OpenTransactionsPage()
+        private async Task OpenTransactionsPage()
         {
             await Shell.Current.GoToAsync($"/{nameof(TransactionsPage)}");
+        }
+        private async Task OpenCategoriesPage()
+        {
+            await Shell.Current.GoToAsync($"/{nameof(CategoriesPage)}");
         }
     }
 }
