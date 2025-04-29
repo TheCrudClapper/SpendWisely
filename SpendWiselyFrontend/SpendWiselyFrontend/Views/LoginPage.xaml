@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:SpendWiselyFrontend.ViewModels"
+             mc:Ignorable="d"
+             x:Class="SpendWiselyFrontend.Views.LoginPage"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.NavBarIsVisible="False"
+             Style="{StaticResource BaseStartingPagesStyles}"
+             >
+
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel/>
+    </ContentPage.BindingContext>
+    
+    <StackLayout>
+        <Label Text="Login here"
+           Margin="0,100,0,0"
+           HorizontalOptions="Center"
+           FontAttributes="Bold"
+           TextColor="#5808a3"
+           FontSize="50"
+           FontFamily="Montserrat"
+        />
+        <Label Text="Welcome back?&#10; you've been missed!"
+           HorizontalOptions="Center"
+           Margin="0,0,0,70"
+           HorizontalTextAlignment="Center"
+           TextColor="White"
+           FontAttributes="Bold"
+           FontSize="20"
+           FontFamily="Montserrat"
+        />
+        <Frame Padding="0"
+           HasShadow="True"
+           BorderColor="#5808a3"
+           CornerRadius="5"
+           Margin="20, 10">
+            <Entry x:Name="emailEntry"
+           Placeholder="Enter your email"
+           FontFamily="Montserrat"
+           TextColor="White"
+           HeightRequest="50"
+           FontSize="15"
+           BackgroundColor="#bd90e8"
+           HorizontalOptions="FillAndExpand"
+        />
+        </Frame>
+
+        <Frame Padding="0"
+           HasShadow="True"
+           BorderColor="#5808a3"
+           CornerRadius="5"
+           Margin="20,10">
+            <Entry x:Name="passwordEntry"
+            Placeholder="Enter your password"
+            TextColor="White"
+            FontSize="15"
+            HeightRequest="50"
+            BackgroundColor="#bd90e8"
+            HorizontalOptions="FillAndExpand"
+            FontFamily="Montserrat"
+            />
+        </Frame>
+        <Label Text="Forgot our password ?"
+           HorizontalOptions="End"
+           Margin="0,0,20,70"
+           HorizontalTextAlignment="Center"
+           TextColor="#5808a3"
+           FontAttributes="Bold"
+           FontFamily="Montserrat"
+        />
+        <Button
+            Text="Sign In"
+            CornerRadius="5"
+            FontSize="20"
+            Margin="20, 10"
+            HeightRequest="50"
+            BackgroundColor="#5808a3" 
+            FontAttributes="Bold"
+            FontFamily="Montserrat"
+            Command="{Binding LoginCommand}"
+        />
+        <Label 
+         Text="Create new account"
+         TextColor="White"
+         FontFamily="Montserrat"
+         HorizontalOptions="Center"  
+         FontSize="15"
+         FontAttributes="Bold"
+         Margin="0,20,0,0"
+            
+        >
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToRegisterPageCommand}"/>
+            </Label.GestureRecognizers>
+        </Label>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SpendWiselyFrontend.Views.RaportsPage"
+             Style="{StaticResource BasicTabbedPageStyles}">
+  <!--Pages can be added as references or inline-->
+    <ContentPage Title="Add Raport">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0" Text="Report Title"  TextColor="Black" VerticalOptions="Center"/>
+            <Entry   Grid.Column="1" Grid.Row="0" BackgroundColor="{StaticResource SecondaryColor}" />
+            <Label Text="Start Date" Grid.Column="0" Grid.Row="1" TextColor="Black" VerticalOptions="Center"/>
+            <DatePicker Grid.Column="1" Grid.Row="1" BackgroundColor="{StaticResource SecondaryColor}"/>
+            <Label Text="End Date" Grid.Column="0" Grid.Row="2" TextColor="Black" VerticalOptions="Center"/>
+            <DatePicker Grid.Column="1" Grid.Row="2" BackgroundColor="{StaticResource SecondaryColor}"/>
+            <Label Text="Description" Grid.Column="0" Grid.Row="3" TextColor="Black" VerticalOptions="Center"/>
+            <Entry  Grid.Column="1" Grid.Row="3" BackgroundColor="{StaticResource SecondaryColor}"/>
+            <Button Text="Submit" Style="{StaticResource BasicButtonStyles}" Grid.Row="4" Grid.ColumnSpan="2"/> 
+        </Grid>
+    </ContentPage>
+    <ContentPage Title="Raports">
+        <Label Text="Tab 1 Content" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+    </ContentPage>
+</TabbedPage>

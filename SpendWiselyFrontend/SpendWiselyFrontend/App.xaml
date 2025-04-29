@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SpendWiselyFrontend.App">
+    <!--
+        Define global resources and styles here, that apply to all pages in your app.
+    -->
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#5808a3</Color>
+            <Color x:Key="SecondaryColor">#bd90e8</Color>
+            <Color x:Key="DarkColor">#1A1A1D</Color>
+            <Color x:Key="LightDarkColor">#242426</Color>
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#332196F3" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            
+            <Style TargetType="ContentPage" x:Key="BaseStartingPagesStyles">
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkColor}"/>
+                <Setter Property="Shell.FlyoutBehavior" Value="Disabled"/>
+            </Style>
+
+            <Style TargetType="Label" x:Key="BasicLabelStyles">
+                <Setter Property="FontFamily" Value="Montserrat"/>
+            </Style>
+
+            <Style TargetType="Button" x:Key="BasicButtonStyles">
+                <Setter Property="FontFamily" Value="Montserrat"/>
+            </Style>
+
+            <Style TargetType="Entry" x:Key="BasicEntryStyles">
+                <Setter Property="FontFamily" Value="Montserrat"/>
+            </Style>
+
+            <Style TargetType="Frame" x:Key="BasicFrameStyles">
+                <Setter Property="CornerRadius" Value="5"/>
+                <Setter Property="BorderColor" Value="#5808a3"/>
+                <Setter Property="HasShadow" Value="True"/>
+            </Style>
+
+            <Style TargetType="TabbedPage" x:Key="BasicTabbedPageStyles">
+                <Setter Property="BarTextColor" Value="{StaticResource SecondaryColor}"/>
+                <Setter Property="SelectedTabColor" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="BarBackgroundColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+        </ResourceDictionary>        
+    </Application.Resources>
+</Application>

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SpendWiselyFrontend.Views.ExpenseViews.AddExpensePage"
+             BackgroundColor="{StaticResource DarkColor}"
+             xmlns:vm="clr-namespace:SpendWiselyFrontend.ViewModels.ExpenseViewModels">
+    
+    <ContentPage.BindingContext>
+    <vm:AddExpenseViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" Margin="0,5">
+                <Label Text="New Expense"
+            FontSize="20"
+            FontAttributes="Bold"
+            VerticalOptions="Start" 
+            HorizontalOptions="Start"
+            Margin="10,5"/>
+                <Button Text="🗑️" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0"/>
+                <Button Text="✔️" TextColor="Gray" HorizontalOptions="End" Margin="0,0,15,0"/>
+            </StackLayout>
+
+            <Grid Margin="5,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Entry Placeholder="Name" Grid.Column="0" Text="{Binding Name}"/>
+                <Entry Placeholder="Emoji" Grid.Column="1" HorizontalTextAlignment="Center" Text="{Binding Emoji}"/>
+                <Entry Placeholder="Current Balance" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Amount}"/>
+                <Picker Title="Pick Account" Grid.Row="2" Grid.ColumnSpan="2" ItemsSource="{Binding Accounts}"/>
+                <Picker Title="Pick Category" Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding Categories}"/>
+                <Entry Placeholder="Description" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="100" VerticalTextAlignment="Top" Text="{Binding Description}"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

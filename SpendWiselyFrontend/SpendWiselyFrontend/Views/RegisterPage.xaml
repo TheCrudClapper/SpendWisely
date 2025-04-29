@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SpendWiselyFrontend.Views.RegisterPage"
+             xmlns:vm="clr-namespace:SpendWiselyFrontend.ViewModels"
+             Style="{StaticResource BaseStartingPagesStyles}"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <vm:RegisterViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <Label Style="{StaticResource BasicLabelStyles}"
+               Text="Create Account"
+               Margin="0,100,0,0"
+               HorizontalOptions="Center"
+               FontAttributes="Bold"
+               TextColor="{StaticResource PrimaryColor}"
+               FontSize="50" />
+        <Label Style="{StaticResource BasicLabelStyles}"
+               Text="Create an account so you can save more with our help !"
+               HorizontalOptions="Center"
+               Margin="0,0,0,70"
+               HorizontalTextAlignment="Center"
+               TextColor="White"
+               FontAttributes="Bold"
+               FontSize="20" />
+        <Frame Padding="0"
+               Style="{StaticResource BasicFrameStyles}"
+               Margin="20, 10">
+            <Entry Style="{StaticResource BasicEntryStyles}"
+                   Text="{Binding Email}"
+                   Placeholder="Enter your email"
+                   TextColor="White"
+                   HeightRequest="50"
+                   FontSize="15"
+                   BackgroundColor="{StaticResource SecondaryColor}"
+                   HorizontalOptions="FillAndExpand" />
+        </Frame>
+
+        <Frame Padding="0"
+           Style="{StaticResource BasicFrameStyles}"
+           Margin="20, 10">
+            <Entry Style="{StaticResource BasicEntryStyles}"
+               Text="{Binding Username}"
+               Placeholder="Enter your username"
+               TextColor="White"
+               HeightRequest="50"
+               FontSize="15"
+               BackgroundColor="{StaticResource SecondaryColor}"
+               HorizontalOptions="FillAndExpand" />
+        </Frame>
+        
+        <Frame Padding="0"
+               Style="{StaticResource BasicFrameStyles}"
+               Margin="20,10">
+            <Entry Style="{StaticResource BasicEntryStyles}"
+                   Text="{Binding Password}"
+                   Placeholder="Enter your password"
+                   TextColor="White"
+                   FontSize="15"
+                   HeightRequest="50"
+                   BackgroundColor="{StaticResource SecondaryColor}"
+                   HorizontalOptions="FillAndExpand" />
+        </Frame>
+
+        <Frame Padding="0"
+               Style="{StaticResource BasicFrameStyles}"
+               Margin="20,10">
+            <Entry Style="{StaticResource BasicEntryStyles}"
+                   Text="{Binding ConfirmPassword}"
+                   Placeholder="Confirm password"
+                   TextColor="White"
+                   FontSize="15"
+                   HeightRequest="50"
+                   BackgroundColor="{StaticResource SecondaryColor}"
+                   HorizontalOptions="FillAndExpand" />
+        </Frame>
+
+        <Button Style="{StaticResource BasicButtonStyles}"
+                Text="Sign Up"
+                CornerRadius="5"
+                FontSize="20"
+                Margin="20, 10"
+                HeightRequest="50"
+                BackgroundColor="{StaticResource PrimaryColor}" 
+                FontAttributes="Bold"
+                Command="{Binding GoToMainPageCommand}" />
+
+        <Label Style="{StaticResource BasicLabelStyles}"
+               Text="Already have account"
+               TextColor="White"
+               HorizontalOptions="Center"  
+               FontSize="15"
+               FontAttributes="Bold"
+               Margin="0,20,0,0">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToLoginPageCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
+    </StackLayout>
+</ContentPage>
