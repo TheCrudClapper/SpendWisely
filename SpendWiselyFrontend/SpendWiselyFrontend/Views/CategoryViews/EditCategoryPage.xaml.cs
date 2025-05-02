@@ -20,7 +20,7 @@ namespace SpendWiselyFrontend.Views.CategoryViews
             set
             {
                 var vm = BindingContext as EditCategoryViewModel;
-                vm?.LoadAccount(int.Parse(value));
+                vm?.LoadItem(int.Parse(value));
             }
         }
         public EditCategoryPage ()

@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace SpendWiselyFrontend.ViewModels.CategoriesViewModels
 {
-    public class AddCategoryViewModel : BaseSingleViewModel
+    public class AddCategoryViewModel : BaseSingleViewModel<CategoryDto, ICategoryService>
     {
         private readonly ICategoryService _categoryService;
         public AddCategoryViewModel()
@@ -60,7 +60,7 @@ namespace SpendWiselyFrontend.ViewModels.CategoriesViewModels
 
             try
             {
-                await _categoryService.AddCategory(category);
+                await _categoryService.Add(category);
                 await AppShell.Current.DisplayAlert("Success", "Account Added!", "OK");
                 await Shell.Current.GoToAsync("..");
             }

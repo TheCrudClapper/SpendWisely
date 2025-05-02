@@ -1,5 +1,6 @@
 ﻿using Refit;
 using SpendWiselyFrontend.Dtos;
+using SpendWiselyFrontend.Services.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,21 +8,21 @@ using System.Threading.Tasks;
 
 namespace SpendWiselyFrontend.ClientServices.Abstractions
 {
-    public interface IMoneyAccountService
+    public interface IMoneyAccountService : ICrudApiService<AccountDto>
     {
         [Get("/api/Accounts")]
-        Task<List<AccountDto>> GetAccounts();
+        new Task<IEnumerable<AccountDto>> GetAll();
 
         [Get("/api/Accounts/{id}")]
-        Task<AccountDto> GetAccount(int id);
+        new Task<AccountDto> GetById(int id);
 
         [Post("/api/Accounts")]
-        Task AddAccount(AccountDto dto);
+        new Task Add([Body]AccountDto dto);
 
         [Put("/api/accounts/{id}")]
-        Task<bool> EditAccount(int id, [Body] AccountDto dto);
+        new Task Edit(int id, [Body]AccountDto dto);
 
         [Delete("/api/Accounts/{id}")]
-        Task DeleteAccound(int id);
+        new Task Delete(int id);
     }
 }

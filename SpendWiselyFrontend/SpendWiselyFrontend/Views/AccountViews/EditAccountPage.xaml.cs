@@ -14,13 +14,12 @@ namespace SpendWiselyFrontend.Views.AccountViews
             set
             {
                 var vm = BindingContext as EditAccountViewModel;
-                vm?.LoadAccount(int.Parse(value));
+                vm?.LoadItem(int.Parse(value));
             }
         }
         public EditAccountPage ()
 		{
 			InitializeComponent ();
-			this.BindingContext = new EditAccountViewModel(new RestService());
 		}
 	}
 }

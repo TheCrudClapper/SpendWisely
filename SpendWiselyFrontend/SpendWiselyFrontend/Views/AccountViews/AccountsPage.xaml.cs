@@ -13,7 +13,7 @@ namespace SpendWiselyFrontend.Views.AccountViews
 		public AccountsPage ()
 		{
 			InitializeComponent ();
-			this.BindingContext = new AccountsViewModel(new RestService());
+			this.BindingContext = new AccountsViewModel();
         }
         protected override async void OnAppearing()
         {

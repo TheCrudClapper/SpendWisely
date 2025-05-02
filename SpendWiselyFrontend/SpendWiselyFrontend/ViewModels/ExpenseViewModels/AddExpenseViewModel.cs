@@ -1,6 +1,7 @@
 ﻿using SpendWiselyFrontend;
 using SpendWiselyFrontend.ClientServices;
 using SpendWiselyFrontend.Dtos;
+using SpendWiselyFrontend.Services.Abstractions;
 using SpendWiselyFrontend.ViewModels.Abstractions;
 using SpendWiselyFrontend.ViewModels.AccountViewModels;
 using System;
@@ -12,7 +13,7 @@ using Xamarin.Forms;
 
 namespace SpendWiselyFrontend.ViewModels.ExpenseViewModels
 {
-    public class AddExpenseViewModel : BaseSingleViewModel
+    public class AddExpenseViewModel : BaseSingleViewModel<CategoryDto, ICategoryService>
     {
         #region Fields
         private int selectedCategoryId;

@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SpendWiselyFrontend.Services.Abstractions;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -6,43 +8,68 @@ using Xamarin.Forms;
 namespace SpendWiselyFrontend.ViewModels.Abstractions
 {
     /// <summary>
-    /// 
+    /// Abstract class that handles collection of items, allows for taping onto item to see it's details
     /// </summary>
-    /// <typeparam name="Model">Can be a class or dto</typeparam>
-    public class BaseManyViewModel<Model> : BaseViewModel
+    /// <typeparam name="Dto">Dto class for db model</typeparam>
+    /// <typeparam name="ApiClientService">Refit Http Client used for sending and recieving http requests / responses</typeparam>
+    public class BaseManyViewModel<Dto, ApiClientService> : BaseViewModel
+        where ApiClientService : ICrudApiService<Dto>
     {
-        private Model _selectedItem;
-        public ObservableCollection<Model> Items { get; set; }
-        public Command EditCommand { get; set; }
+        private readonly ApiClientService _apiClientService;
+
+        private Dto _selectedItem;
+        public ObservableCollection<Dto> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
-        public Command DeleteCommand { get; set; }
-        public virtual Model SelectedItem
+        public Command AddItemCommand { get; set; }
+        public Command OpenEditPageCommand { get; set; }
+        public virtual Dto SelectedItem
         {
             get => _selectedItem;
             set
             {
-                SetProperty(ref _selectedItem, value);
+                if (value != null)
+                {
+                    _selectedItem = value;
+
+                    OpenEditPageCommand.Execute(value);
+
+                    _selectedItem = default;
+                    OnPropertyChanged(nameof(SelectedItem));
+                }
+                
             }
         }
         public BaseManyViewModel()
         {
-            EditCommand = new Command(Edit);
-            DeleteCommand = new Command(Delete);
+            _apiClientService = App.ServiceProvider.GetService<ApiClientService>();
+            AddItemCommand = new Command(OpenAddPage);
             LoadItemsCommand = new Command(async () => await LoadItemsAsync());
-            Items = new ObservableCollection<Model>();
+            OpenEditPageCommand = new Command(async () => await OpenEditPage(SelectedItem));
+            Items = new ObservableCollection<Dto>();
         }
-        protected virtual void Edit()
-        {
-
-        }
-        protected virtual void Delete()
-        {
-
-        }
+        protected virtual async Task OpenEditPage(Dto dto) { }
+        protected virtual void OpenAddPage() { }
         public virtual async Task LoadItemsAsync()
         {
+            IsBusy = true;
+            try
+            {
+                Items.Clear();
+                var items = await _apiClientService.GetAll();
 
+                foreach (var item in items)
+                {
+                    Items.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed to fetch acoounts");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
-
     }
 }

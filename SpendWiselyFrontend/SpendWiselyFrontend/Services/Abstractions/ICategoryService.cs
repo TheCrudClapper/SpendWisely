@@ -7,21 +7,22 @@ using System.Threading.Tasks;
 
 namespace SpendWiselyFrontend.Services.Abstractions
 {
-    interface ICategoryService
+    public interface ICategoryService : ICrudApiService<CategoryDto>
     {
-        [Post("/api/Categories")]
-        Task AddCategory(CategoryDto dto);
-
+        //by new override methods from parent service 
         [Get("/api/Categories")]
-        Task<IEnumerable<CategoryDto>> GetCategories();
+        new Task<IEnumerable<CategoryDto>> GetAll();
 
         [Get("/api/Categories/{id}")]
-        Task<CategoryDto> GetCategory(int id);
+        new Task<CategoryDto> GetById(int id);
 
-        [Delete("/api/Categories/{id}")]
-        Task Delete(int id);
+        [Post("/api/Categories")]
+        new Task Add([Body] CategoryDto dto);
 
         [Put("/api/Categories/{id}")]
-        Task Edit(int id, [Body]CategoryDto dto);
+        new Task Edit(int id, [Body] CategoryDto dto);
+
+        [Delete("/api/Categories/{id}")]
+        new Task Delete(int id);
     }
 }

@@ -10,7 +10,7 @@ using SpendWiselyFrontend.Views.BudgetViews;
 
 namespace SpendWiselyFrontend.ViewModels.BudgetViewModels
 {
-    public class BudgetsViewModel : BaseManyViewModel<BudgetDto>
+    public class BudgetsViewModel
     {
         private readonly IRestService _restService;
         public Command OpenAddBudgetPageCommand { get; set; }

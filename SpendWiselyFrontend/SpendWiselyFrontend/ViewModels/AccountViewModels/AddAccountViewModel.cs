@@ -9,10 +9,9 @@ using Xamarin.Forms;
 
 namespace SpendWiselyFrontend.ViewModels.AccountViewModels
 {
-    public class AddAccountViewModel : BaseSingleViewModel
+    public class AddAccountViewModel : BaseSingleViewModel<AccountDto, IMoneyAccountService>
     {
         private readonly IMoneyAccountService _moneyAccountService;
-
         public AddAccountViewModel()
         {
             _moneyAccountService = App.ServiceProvider.GetService<IMoneyAccountService>();
@@ -63,7 +62,7 @@ namespace SpendWiselyFrontend.ViewModels.AccountViewModels
 
             try
             {
-                await _moneyAccountService.AddAccount(account);
+                await _moneyAccountService.Add(account);
                 await AppShell.Current.DisplayAlert("Success", "Account Added!", "OK");
                 await Shell.Current.GoToAsync("..");
             }
