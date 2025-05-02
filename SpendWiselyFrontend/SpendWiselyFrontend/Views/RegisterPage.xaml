@@ -80,13 +80,13 @@
 
         <Button Style="{StaticResource BasicButtonStyles}"
                 Text="Sign Up"
+                Command="{Binding RegisterCommand}"
                 CornerRadius="5"
                 FontSize="20"
                 Margin="20, 10"
                 HeightRequest="50"
                 BackgroundColor="{StaticResource PrimaryColor}" 
-                FontAttributes="Bold"
-                Command="{Binding GoToMainPageCommand}" />
+                FontAttributes="Bold" />
 
         <Label Style="{StaticResource BasicLabelStyles}"
                Text="Already have account"

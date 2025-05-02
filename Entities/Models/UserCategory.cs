@@ -1,12 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Entities.Models.IdentityEntities;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.Models
 {
     public class UserCategory : BaseModel
     {
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         [ForeignKey("UserId")]
-        public User User { get; set; } = null!;
+        public ApplicationUser User { get; set; } = null!;
 
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]

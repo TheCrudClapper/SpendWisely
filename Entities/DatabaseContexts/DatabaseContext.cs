@@ -1,11 +1,12 @@
 ﻿using Entities.Models;
+using Entities.Models.IdentityEntities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Entities.DatabaseContexts
 {
-    public class DatabaseContext : DbContext
+    public class DatabaseContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {
-        public DbSet<User> Users { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<UserCategory> UserCategories { get; set; }

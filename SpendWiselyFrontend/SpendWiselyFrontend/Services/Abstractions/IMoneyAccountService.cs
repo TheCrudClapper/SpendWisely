@@ -12,11 +12,14 @@ namespace SpendWiselyFrontend.ClientServices.Abstractions
         [Get("/api/Accounts")]
         Task<List<AccountDto>> GetAccounts();
 
+        [Get("/api/Accounts/{id}")]
+        Task<AccountDto> GetAccount(int id);
+
         [Post("/api/Accounts")]
         Task AddAccount(AccountDto dto);
 
-        [Put("/api/accounts/{id}{dto}")]
-        Task<bool> EditAccount(int id, AccountDto dto);
+        [Put("/api/accounts/{id}")]
+        Task<bool> EditAccount(int id, [Body] AccountDto dto);
 
         [Delete("/api/Accounts/{id}")]
         Task DeleteAccound(int id);

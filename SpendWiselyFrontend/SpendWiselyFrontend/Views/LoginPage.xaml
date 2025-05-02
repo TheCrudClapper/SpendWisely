@@ -46,6 +46,7 @@
            FontSize="15"
            BackgroundColor="#bd90e8"
            HorizontalOptions="FillAndExpand"
+           Text="{Binding Email}"   
         />
         </Frame>
 
@@ -62,6 +63,7 @@
             BackgroundColor="#bd90e8"
             HorizontalOptions="FillAndExpand"
             FontFamily="Montserrat"
+            Text="{Binding Password}"   
             />
         </Frame>
         <Label Text="Forgot our password ?"

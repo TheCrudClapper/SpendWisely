@@ -88,7 +88,7 @@ namespace SpendWiselyFrontend.ViewModels.ExpenseViewModels
                 Categories.Add(category);
             }
         }
-        //protected override async void SaveChanges()
+        //protected override async void Save()
         //{
         //    if (IsBusy)
         //        return;

@@ -6,6 +6,7 @@ using SpendWiselyFrontend.ViewModels.Abstractions;
 using SpendWiselyFrontend.Views.AccountViews;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -28,6 +29,22 @@ namespace SpendWiselyFrontend.ViewModels.AccountViewModels
             _restService = App.ServiceProvider.GetService<IRestService>();
             OpenEditAccountPageCommand = new Command<AccountDto>(async (account) => await OpenEditAccountPage(account));
             OpenAddAccountPageCommand = new Command(OpenAddAccountPage);
+        }
+        public override AccountDto SelectedItem
+        {
+            get => base.SelectedItem;
+            set
+            {
+                if (value != null)
+                {
+                    base.SelectedItem = value;
+
+                    OpenEditAccountPageCommand.Execute(value);
+
+                    base.SelectedItem = null;
+                    OnPropertyChanged(nameof(SelectedItem));
+                }
+            }
         }
         public async void OpenAddAccountPage()
         {

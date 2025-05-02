@@ -16,7 +16,7 @@ namespace SpendWiselyFrontend.ViewModels.Abstractions
         public Command EditCommand { get; set; }
         public Command LoadItemsCommand { get; set; }
         public Command DeleteCommand { get; set; }
-        public Model SelectedItem
+        public virtual Model SelectedItem
         {
             get => _selectedItem;
             set

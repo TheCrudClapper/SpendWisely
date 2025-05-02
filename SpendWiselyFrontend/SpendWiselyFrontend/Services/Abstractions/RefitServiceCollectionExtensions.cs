@@ -1,19 +1,27 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Refit;
+using SpendWiselyFrontend.Helpers;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using Xamarin.Essentials;
 
 namespace SpendWiselyFrontend.ClientServices.Abstractions
 {
     public static class RefitServiceCollectionExtensions
     {
-        public static IServiceCollection AddRefitClientFor<TClient>(this IServiceCollection services, string baseUrl)
+        public static IServiceCollection AddRefitClientFor<TClient>(this IServiceCollection services, string baseUrl, bool useAuth = true)
             where TClient : class
         {
-            services.AddRefitClient<TClient>()
-                .ConfigureHttpClient(c => c.BaseAddress = new Uri(baseUrl));
+            var refitBuilder = services.AddRefitClient<TClient>()
+            .ConfigureHttpClient(c => c.BaseAddress = new Uri(baseUrl));
+
+            if (useAuth)
+            {
+                services.AddTransient<AuthHeaderHandler>();
+                refitBuilder.AddHttpMessageHandler<AuthHeaderHandler>();
+            }
+
             return services;
-        } 
+        }
     }
 }
+

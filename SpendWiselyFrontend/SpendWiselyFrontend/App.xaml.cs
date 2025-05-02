@@ -1,7 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Refit;
 using SpendWiselyFrontend.ClientServices;
 using SpendWiselyFrontend.ClientServices.Abstractions;
+using SpendWiselyFrontend.Services.Abstractions;
 using SpendWiselyFrontend.ViewModels;
 using SpendWiselyFrontend.ViewModels.Abstractions;
 using System;
@@ -25,7 +27,9 @@ namespace SpendWiselyFrontend
             services.AddSingleton<IRestService, ClientServices.RestService>();
 
             //refit clients
-            services.AddRefitClientFor<IMoneyAccountService>(ApiBaseUrl);
+            services.AddRefitClientFor<IAuthService>(ApiBaseUrl, useAuth: false);
+            services.AddRefitClientFor<IMoneyAccountService>(ApiBaseUrl, useAuth: true);
+            services.AddRefitClientFor<ICategoryService>(ApiBaseUrl, useAuth: true);
 
             //registering vm's
             services.AddTransient<MainPageViewModel>();

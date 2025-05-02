@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpendWiselyFrontend.iOS", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpendWiselyFrontend", "SpendWiselyFrontend\SpendWiselyFrontend\SpendWiselyFrontend.csproj", "{FCC76175-D4B5-4F6E-9E09-138498D95BF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpendWiselyRestApi", "..\..\SpendWisely\SpendWisely\SpendWiselyRestApi\SpendWiselyRestApi.csproj", "{F94743C4-D921-9E74-9E95-9B1D15A3A6A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpendWiselyRestApi", "SpendWiselyRestApi\SpendWiselyRestApi.csproj", "{F94743C4-D921-9E74-9E95-9B1D15A3A6A6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{F2CEBFAD-9891-4E9D-91DF-50319AA834C0}"
 EndProject

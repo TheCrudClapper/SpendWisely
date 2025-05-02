@@ -12,9 +12,11 @@
     
     <ContentPage.Content>
         <StackLayout Margin="5,9" Spacing="10">
-            <Button HeightRequest="40" WidthRequest="40" HorizontalOptions="EndAndExpand" Text="➕" Margin="0,5,5,0" Command="{Binding OpenAddAccountPageCommand}"/>
-            <Label Text="Accounts" FontAttributes="Bold" FontSize="25" Margin="0,5,0,0"/>
-            <CollectionView ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" SelectionMode="Single" SelectionChanged="OnAccountSelected">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Accounts" FontAttributes="Bold" FontSize="25" Margin="5,5,0,0"/>
+                <Button HeightRequest="40" WidthRequest="40" HorizontalOptions="EndAndExpand" Text="➕" Margin="0,5,5,0" Command="{Binding OpenAddAccountPageCommand}"/>
+            </StackLayout>
+            <CollectionView ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" SelectionMode="Single">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
                 </CollectionView.ItemsLayout>

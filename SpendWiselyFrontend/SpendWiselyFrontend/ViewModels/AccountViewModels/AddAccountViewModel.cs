@@ -2,6 +2,8 @@
 using SpendWiselyFrontend.ClientServices.Abstractions;
 using SpendWiselyFrontend.Dtos;
 using SpendWiselyFrontend.ViewModels.Abstractions;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 
@@ -44,7 +46,7 @@ namespace SpendWiselyFrontend.ViewModels.AccountViewModels
             set => SetProperty(ref description, value);
         }
 
-        protected override async void SaveChanges()
+        protected override async Task Save()
         {
             if (IsBusy)
                 return;
@@ -53,7 +55,6 @@ namespace SpendWiselyFrontend.ViewModels.AccountViewModels
 
             var account = new AccountDto
             {
-                UserId = 1, 
                 Name = Name,
                 Balance = CurrentBalance,
                 Description = Description,

@@ -1,12 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Entities.Models.IdentityEntities;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.Models
 {
     public class Account : BaseModel
     {
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         [ForeignKey("UserId")]
-        public User User { get; set; } = null!;
+        public ApplicationUser User { get; set; } = null!;
         public string Name { get; set; } = null!;
         [Column(TypeName = "decimal(10, 2)")]
         public decimal Balance { get; set; }
