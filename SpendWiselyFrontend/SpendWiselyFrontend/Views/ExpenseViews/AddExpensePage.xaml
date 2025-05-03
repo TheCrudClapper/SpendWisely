@@ -18,8 +18,8 @@
             VerticalOptions="Start" 
             HorizontalOptions="Start"
             Margin="10,5"/>
-                <Button Text="🗑️" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0"/>
-                <Button Text="✔️" TextColor="Gray" HorizontalOptions="End" Margin="0,0,15,0"/>
+                <Button Text="🗑️" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0" Command="{Binding ClearInputsCommand}"/>
+                <Button Text="✔️" TextColor="Gray" HorizontalOptions="End" Margin="0,0,15,0" Command="{Binding SaveCommand}"/>
             </StackLayout>
 
             <Grid Margin="5,0">
@@ -36,8 +36,7 @@
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <Entry Placeholder="Name" Grid.Column="0" Text="{Binding Name}"/>
-                <Entry Placeholder="Emoji" Grid.Column="1" HorizontalTextAlignment="Center" Text="{Binding Emoji}"/>
-                <Entry Placeholder="Current Balance" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Amount}"/>
+                <Entry Placeholder="Amount" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" Text="{Binding Amount}"/>
                 <Picker Title="Pick Account" Grid.Row="2" Grid.ColumnSpan="2" ItemsSource="{Binding Accounts}"/>
                 <Picker Title="Pick Category" Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding Categories}"/>
                 <Entry Placeholder="Description" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="100" VerticalTextAlignment="Top" Text="{Binding Description}"/>

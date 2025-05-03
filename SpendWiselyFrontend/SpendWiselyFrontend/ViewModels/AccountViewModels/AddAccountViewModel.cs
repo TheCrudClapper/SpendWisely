@@ -16,11 +16,13 @@ namespace SpendWiselyFrontend.ViewModels.AccountViewModels
         {
             _moneyAccountService = App.ServiceProvider.GetService<IMoneyAccountService>();
         }
+        #region Fields
         private string name;
         private string emoji;
         private string description;
         private decimal currentBalance;
-
+        #endregion
+        #region MVVMProperties
         public string Name
         {
             get => name;
@@ -44,7 +46,7 @@ namespace SpendWiselyFrontend.ViewModels.AccountViewModels
             get => description;
             set => SetProperty(ref description, value);
         }
-
+        #endregion
         protected override async Task Save()
         {
             if (IsBusy)

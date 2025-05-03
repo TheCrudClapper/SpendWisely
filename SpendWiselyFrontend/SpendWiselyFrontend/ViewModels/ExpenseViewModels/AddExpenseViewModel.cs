@@ -1,5 +1,7 @@
-﻿using SpendWiselyFrontend;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SpendWiselyFrontend;
 using SpendWiselyFrontend.ClientServices;
+using SpendWiselyFrontend.ClientServices.Abstractions;
 using SpendWiselyFrontend.Dtos;
 using SpendWiselyFrontend.Services.Abstractions;
 using SpendWiselyFrontend.ViewModels.Abstractions;
@@ -13,9 +15,12 @@ using Xamarin.Forms;
 
 namespace SpendWiselyFrontend.ViewModels.ExpenseViewModels
 {
-    public class AddExpenseViewModel : BaseSingleViewModel<CategoryDto, ICategoryService>
+    public class AddExpenseViewModel : BaseSingleViewModel<ExpenseDto, IExpenseService>
     {
         #region Fields
+        private readonly IExpenseService _expenseService;
+        private readonly IMoneyAccountService _moneyAccountService;
+        private readonly ICategoryService _categoryService;
         private int selectedCategoryId;
         private int selectedAccountId;
         private decimal amount;
@@ -55,78 +60,76 @@ namespace SpendWiselyFrontend.ViewModels.ExpenseViewModels
             get => description;
             set => SetProperty(ref description, value);
         }
-        #endregion
         public ObservableCollection<AccountDto> Accounts { get; set; }
         public ObservableCollection<CategoryDto> Categories { get; set; }
-
-        private readonly IRestService _restService;
-
+        #endregion
         public AddExpenseViewModel()
         {
-
-        }
-        public AddExpenseViewModel(IRestService restService)
-        {
-            _restService = restService;
+            _expenseService = App.ServiceProvider.GetService<IExpenseService>();
+            _moneyAccountService = App.ServiceProvider.GetService<IMoneyAccountService>();
+            _categoryService = App.ServiceProvider.GetService<ICategoryService>();
             Accounts = new ObservableCollection<AccountDto>();
             Categories = new ObservableCollection<CategoryDto>();
         }
         public async Task LoadAccountList()
         {
-            var accountsResponse = await _restService.GetAsync<List<AccountDto>>("api/accounts");
+            var accounts = await _moneyAccountService.GetAll();
             Accounts.Clear();
-            foreach(var account in accountsResponse)
+            foreach(var account in accounts)
             {
                 Accounts.Add(account);
             }
         }
         public async Task LoadCategoriesList()
         {
-            var categoriesResponse = await _restService.GetAsync<List<CategoryDto>>("api/categories");
+            var categories = await _categoryService.GetAll();
             Categories.Clear();
-            foreach (var category in categoriesResponse)
+            foreach (var category in categories)
             {
                 Categories.Add(category);
             }
         }
-        //protected override async void Save()
-        //{
-        //    if (IsBusy)
-        //        return;
+        protected override async Task Save()
+        {
+            if (IsBusy)
+                return;
 
-        //    IsBusy = true;
+            IsBusy = true;
 
-        //    var account = new ExpenseDto
-        //    {
-        //        UserId = 1,
-        //        Name = Name,
-        //        Balance = CurrentBalance,
-        //        Description = Description,
-        //        EmojiUrl = Emoji
-        //    };
+            var expense = new ExpenseDto
+            {
+                Name = name,
+                Description = description,
+                AccountId = selectedAccountId,
+                CategoryId = selectedCategoryId,
+                Amount = amount,
+            };
 
-        //    try
-        //    {
-        //        var createdAccount = await _restService.PostAsync<AccountDto, AccountDto>("api/accounts", account);
-        //        await AppShell.Current.DisplayAlert("Success", "Account Added!", "OK");
-        //        await Shell.Current.GoToAsync("..");
-        //    }
-        //    catch (System.Exception ex)
-        //    {
-        //        await AppShell.Current.DisplayAlert("Error", ex.Message, "OK");
-        //    }
-        //    finally
-        //    {
-        //        IsBusy = false;
-        //    }
-        //}
 
-        //protected override void ClearInputs()
-        //{
-        //    Name = string.Empty;
-        //    Emoji = string.Empty;
-        //    Description = string.Empty;
-        //    CurrentBalance = 0;
-        //}
+            try
+            {
+                await _expenseService.Add(expense);
+                await AppShell.Current.DisplayAlert("Success", "Account Added!", "OK");
+                await Shell.Current.GoToAsync("..");
+            }
+            catch (System.Exception ex)
+            {
+                await AppShell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        protected override void ClearInputs()
+        {
+            Name = string.Empty;
+            Emoji = string.Empty;
+            Description = string.Empty;
+            Amount = default;
+            SelectedAccountId = default;
+            SelectedCategoryId = default;
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace SpendWiselyFrontend.Views.ExpenseViews
 		public AddExpensePage ()
 		{
 			InitializeComponent ();
-			this.BindingContext = new AddExpenseViewModel(new RestService());
+			this.BindingContext = new AddExpenseViewModel();
 		}
         protected override async void OnAppearing()
         {

@@ -30,6 +30,7 @@ namespace SpendWiselyFrontend
             services.AddRefitClientFor<IAuthService>(ApiBaseUrl, useAuth: false);
             services.AddRefitClientFor<IMoneyAccountService>(ApiBaseUrl, useAuth: true);
             services.AddRefitClientFor<ICategoryService>(ApiBaseUrl, useAuth: true);
+            services.AddRefitClientFor<IExpenseService>(ApiBaseUrl, useAuth: true);
 
             //registering vm's
             services.AddTransient<MainPageViewModel>();
