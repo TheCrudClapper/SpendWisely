@@ -1,13 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Refit;
-using SpendWiselyFrontend.ClientServices;
+﻿using Microsoft.Extensions.DependencyInjection;
 using SpendWiselyFrontend.ClientServices.Abstractions;
 using SpendWiselyFrontend.Services.Abstractions;
 using SpendWiselyFrontend.ViewModels;
 using SpendWiselyFrontend.ViewModels.Abstractions;
 using System;
-using System.Net.Http;
 using Xamarin.Forms;
 
 namespace SpendWiselyFrontend
@@ -31,6 +27,7 @@ namespace SpendWiselyFrontend
             services.AddRefitClientFor<IMoneyAccountService>(ApiBaseUrl, useAuth: true);
             services.AddRefitClientFor<ICategoryService>(ApiBaseUrl, useAuth: true);
             services.AddRefitClientFor<IExpenseService>(ApiBaseUrl, useAuth: true);
+            services.AddRefitClientFor<IIncomeService>(ApiBaseUrl, useAuth: true);
 
             //registering vm's
             services.AddTransient<MainPageViewModel>();

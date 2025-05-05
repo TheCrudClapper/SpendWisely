@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using SpendWiselyFrontend.ViewModels.IncomeViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using SpendWiselyFrontend.ViewModels.IncomeViewModels;
 
 namespace SpendWiselyFrontend.Views.IncomeViews
 {
@@ -18,5 +12,11 @@ namespace SpendWiselyFrontend.Views.IncomeViews
 			InitializeComponent ();
 			this.BindingContext = new AddIncomeViewModel();
 		}
-	}
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            var vm = (AddIncomeViewModel)BindingContext;
+            await vm?.LoadAccountList();
+        }
+    }
 }

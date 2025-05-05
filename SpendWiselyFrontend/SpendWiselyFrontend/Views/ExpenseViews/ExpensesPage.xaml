@@ -1,18 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SpendWiselyFrontend.Views.IncomeViews.IncomesPage"
-             xmlns:vm="clr-namespace:SpendWiselyFrontend.ViewModels.IncomeViewModels"
-             BackgroundColor="{StaticResource DarkColor}">
+             xmlns:vm="clr-namespace:SpendWiselyFrontend.ViewModels.ExpenseViewModels"
+             x:Class="SpendWiselyFrontend.Views.ExpenseViews.ExpensesPage">
 
     <ContentPage.BindingContext>
-        <vm:IncomesViewModel/>
+        <vm:ExpensesViewModel/>
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
         <StackLayout Margin="5,9" Spacing="10">
             <StackLayout Orientation="Horizontal">
-                <Label Text="Incomes" FontAttributes="Bold" FontSize="25" Margin="5,5,0,0"/>
+                <Label Text="Expenses" FontAttributes="Bold" FontSize="25" Margin="5,5,0,0"/>
                 <Button HeightRequest="40" WidthRequest="40" HorizontalOptions="EndAndExpand" Text="➕" Margin="0,5,5,0" Command="{Binding AddItemCommand}"/>
             </StackLayout>
             <CollectionView ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" SelectionMode="Single" >

@@ -1,12 +1,16 @@
 ﻿using Entities.DatabaseContexts;
 using Entities.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Services.Dtos;
+using SpendWiselyRestApi.Extensions;
 
 namespace SpendWiselyRestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class IncomesController : ControllerBase
     {
         private readonly DatabaseContext _context;
@@ -18,9 +22,19 @@ namespace SpendWiselyRestApi.Controllers
 
         // GET: api/Incomes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Income>>> GetIncomes()
+        public async Task<ActionResult<IEnumerable<IncomeDto>>> GetIncomes()
         {
-            return await _context.Incomes.ToListAsync();
+            var userId = this.GetLoggedUserId();
+            return await _context.Incomes
+                .Where(i => i.IsActive && i.Account.UserId == userId)
+                .Select(i => new IncomeDto
+                {
+                    Id = i.Id,
+                    AccountId = i.AccountId,
+                    Amount = i.Amount,
+                    Description = i.Description,
+                    Name = i.Name
+                }).ToListAsync();
         }
 
         // GET: api/Incomes/5
@@ -38,16 +52,27 @@ namespace SpendWiselyRestApi.Controllers
         }
 
         // PUT: api/Incomes/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutIncome(int id, Income income)
+        public async Task<IActionResult> PutIncome(int id, IncomeDto dto)
         {
-            if (id != income.Id)
+            if (id != dto.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(income).State = EntityState.Modified;
+            var existingIncome = await _context.Incomes.FindAsync(id);
+            if (existingIncome == null)
+            {
+                return NotFound();
+            }
+
+            existingIncome.Name = dto.Name;
+            existingIncome.Amount = dto.Amount;
+            existingIncome.Description = dto.Description;
+            existingIncome.AccountId = dto.AccountId;
+            existingIncome.DateEdited = DateTime.Now;
+
+            _context.Entry(existingIncome).State = EntityState.Modified;
 
             try
             {
@@ -69,10 +94,27 @@ namespace SpendWiselyRestApi.Controllers
         }
 
         // POST: api/Incomes
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Income>> PostIncome(Income income)
+        public async Task<ActionResult<Income>> PostIncome(IncomeDto dto)
         {
+            var userId = this.GetLoggedUserId();
+            var account = await _context.Accounts.FirstOrDefaultAsync(a => a.Id == dto.AccountId && a.UserId == userId);
+
+            if (account == null)
+            {
+                return BadRequest("Invalid account for current user.");
+            }
+
+            var income = new Income
+            {
+                AccountId = dto.AccountId,
+                Amount = dto.Amount,
+                Description = dto.Description,
+                Name = dto.Name,
+                IsActive = true,
+                DateCreated = DateTime.Now,
+            };
+
             _context.Incomes.Add(income);
             await _context.SaveChangesAsync();
 

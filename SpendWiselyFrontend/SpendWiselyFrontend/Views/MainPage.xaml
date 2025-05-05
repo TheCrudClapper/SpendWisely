@@ -175,6 +175,36 @@
 
                 </Frame>
             </StackLayout>
+            <StackLayout>
+                <Frame BackgroundColor="{StaticResource LightDarkColor}">
+                    <StackLayout Padding="0" Margin="0,-5">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Testing Playground (temporary)" VerticalOptions="Start" FontAttributes="Bold"/>
+                        </StackLayout>
+                        <StackLayout Orientation ="Horizontal">
+                            <Label FontSize="20" Text="💵"/>
+                            <Label FontSize="12" Text="Expenses" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OpenExpensesCommand}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label FontSize="20" Text="💲"/>
+                            <Label FontSize="12" Text="Incomes" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OpenIncomesCommand}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label FontSize="20" Text="🔁"/>
+                            <Label FontSize="12" Text="Recuring Expenses" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OpenRecuringExpensesCommand}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                    </StackLayout>
+
+                </Frame>
+            </StackLayout>
             <StackLayout >
                 <Frame BackgroundColor="{StaticResource LightDarkColor}">
                     <StackLayout Padding="0" Margin="0,-5" Orientation="Horizontal">

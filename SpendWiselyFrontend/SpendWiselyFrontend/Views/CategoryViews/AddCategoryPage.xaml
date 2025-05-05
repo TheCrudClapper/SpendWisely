@@ -19,7 +19,7 @@
                  HorizontalOptions="Start"
                  Margin="10,5"/>
                 <Button Text="🧹" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0" Command="{Binding ClearInputsCommand}"/>
-                <Button Text="✔️" TextColor="Gray" HorizontalOptions="End" Margin="0,0,15,0" Command="{Binding SaveCommand}"/>
+                <Button Text="✔️" TextColor="Gray" HorizontalOptions="End" Margin="0,0,0,0" Command="{Binding SaveCommand}"/>
             </StackLayout>
 
             <Grid Margin="5,0">
@@ -29,13 +29,12 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Entry Placeholder="Name" Grid.Column="0" Text="{Binding Name, Mode=TwoWay}"/>
                 <Entry Placeholder="Emoji" Grid.Column="1" HorizontalTextAlignment="Center"  Text="{Binding Emoji, Mode=TwoWay}" />
-                <Entry Placeholder="Description" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="100" VerticalTextAlignment="Top" Text="{Binding Description, Mode=TwoWay}" />
+                <Entry Placeholder="Description" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="100" VerticalTextAlignment="Top" Text="{Binding Description, Mode=TwoWay}" />
             </Grid>
 
 

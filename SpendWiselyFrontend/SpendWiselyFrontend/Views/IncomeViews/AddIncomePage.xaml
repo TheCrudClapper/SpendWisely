@@ -5,7 +5,7 @@
              xmlns:vm="clr-namespace:SpendWiselyFrontend.ViewModels.IncomeViewModels"
              BackgroundColor="{StaticResource DarkColor}"
              >
-             
+
     <ContentPage.BindingContext>
         <vm:AddIncomeViewModel/>
     </ContentPage.BindingContext>
@@ -14,30 +14,33 @@
         <StackLayout>
             <StackLayout Orientation="Horizontal" Margin="0,5">
                 <Label Text="New Income"
-                    FontSize="20"
-                    FontAttributes="Bold"
-                    VerticalOptions="Start" 
-                    HorizontalOptions="Start"
-                    Margin="10,5"/>
-                <Button Text="🗑️" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0"/>
-                <Button Text="✔️" TextColor="Gray" HorizontalOptions="End" Margin="0,0,15,0"/>
+                FontSize="20"
+                FontAttributes="Bold"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start"
+                Margin="10,5"/>
+                <Button Text="🗑️" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0" Command="{Binding ClearInputsCommand}"/>
+                <Button Text="✔️" TextColor="Gray" HorizontalOptions="End" Margin="0,0,15,0" Command="{Binding SaveCommand}"/>
             </StackLayout>
 
             <Grid Margin="5,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="20*"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
-                <Entry Placeholder="Name" Grid.Column="0"/>
-                <Entry Placeholder="Amount" Grid.Row="1" Grid.Column="0"/>
-                <Picker Title="Pick Account" Grid.Row="2"/>
-                <Entry Placeholder="Description" Grid.Row="3" Grid.Column="0" HeightRequest="100" VerticalTextAlignment="Top"/>
+                <Entry Placeholder="Name" Grid.Column="0" Text="{Binding Name}"/>
+                <Entry Placeholder="Emoji" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" Text="{Binding Emoji}"/>
+                <Entry Placeholder="Amount" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Amount}"/>
+                <Picker Title="Pick Account" Grid.Row="2" Grid.ColumnSpan="2" ItemsSource="{Binding Accounts}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedAccount}"/>
+                <Entry Placeholder="Description" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="100" VerticalTextAlignment="Top" Text="{Binding Description}"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

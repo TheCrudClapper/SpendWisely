@@ -29,6 +29,10 @@ namespace SpendWiselyFrontend
             Routing.RegisterRoute(nameof(CategoriesPage), typeof(CategoriesPage));
             Routing.RegisterRoute(nameof(AddCategoryPage), typeof(AddCategoryPage));
             Routing.RegisterRoute(nameof(EditCategoryPage), typeof(EditCategoryPage));
+            Routing.RegisterRoute(nameof(ExpensesPage), typeof(ExpensesPage));
+            Routing.RegisterRoute(nameof(IncomesPage), typeof(IncomesPage));
+            Routing.RegisterRoute(nameof(EditIncomePage), typeof(EditIncomePage));
+            Routing.RegisterRoute(nameof(EditExpensePage), typeof(EditExpensePage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

@@ -50,8 +50,8 @@ namespace SpendWiselyFrontend.ViewModels.Abstractions
         protected async virtual Task Delete()
         {
             var confirmed = await Application.Current.MainPage.DisplayAlert(
-            "Deleting Account",
-            "Are you sure you want to delete account",
+            "Deleting Item",
+            "Are you sure you want to delete item ?",
             "Yes",
             "No");
 
@@ -61,7 +61,7 @@ namespace SpendWiselyFrontend.ViewModels.Abstractions
             await Shell.Current.GoToAsync("..");
         }
         /// <summary>
-        /// This class needs to be overridden by dev to include all dto field mappings
+        /// This class needs to be overridden by dev to include all SelectedCategory field mappings
         /// </summary>
         /// <returns></returns>
         protected async virtual Task Save() { }

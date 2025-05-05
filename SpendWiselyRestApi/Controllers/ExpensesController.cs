@@ -1,12 +1,18 @@
 ﻿using Entities.DatabaseContexts;
+using Entities.Dtos;
 using Entities.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Services.Dtos;
+using SpendWiselyRestApi.Extensions;
+using System.Security.Claims;
 
 namespace SpendWiselyRestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ExpensesController : ControllerBase
     {
         private readonly DatabaseContext _context;
@@ -18,9 +24,20 @@ namespace SpendWiselyRestApi.Controllers
 
         // GET: api/Expenses
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Expense>>> GetExpenses()
+        public async Task<ActionResult<IEnumerable<ExpenseDto>>> GetExpenses()
         {
-            return await _context.Expenses.ToListAsync();
+            var userId = this.GetLoggedUserId();
+            return await _context.Expenses
+                .Where(e => e.IsActive && e.Account.UserId == userId)
+                .Select(e => new ExpenseDto()
+                {
+                    Id = e.Id,
+                    AccountId = e.AccountId,
+                    CategoryId = e.CategoryId,
+                    Amount = e.Amount,
+                    Description = e.Description,
+                    Name = e.Name
+                }).ToListAsync();
         }
 
         // GET: api/Expenses/5
@@ -38,16 +55,28 @@ namespace SpendWiselyRestApi.Controllers
         }
 
         // PUT: api/Expenses/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutExpense(int id, Expense expense)
+        public async Task<IActionResult> PutExpense(int id, ExpenseDto dto)
         {
-            if (id != expense.Id)
+            if (id != dto.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(expense).State = EntityState.Modified;
+            var existingExpense = await _context.Expenses.FindAsync(id);
+            if (existingExpense == null)
+            {
+                return NotFound();
+            }
+
+            existingExpense.Name = dto.Name;
+            existingExpense.Amount = dto.Amount;
+            existingExpense.Description = dto.Description;
+            existingExpense.AccountId = dto.AccountId;
+            existingExpense.CategoryId = dto.CategoryId;
+            existingExpense.DateEdited = DateTime.Now;
+
+            _context.Entry(existingExpense).State = EntityState.Modified;
 
             try
             {
@@ -69,10 +98,28 @@ namespace SpendWiselyRestApi.Controllers
         }
 
         // POST: api/Expenses
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Expense>> PostExpense(Expense expense)
+        public async Task<ActionResult<Expense>> PostExpense(ExpenseDto dto)
         {
+            var userId = this.GetLoggedUserId();
+            var account = await _context.Accounts.FirstOrDefaultAsync(a => a.Id == dto.AccountId && a.UserId == userId);
+
+            if (account == null)
+            {
+                return BadRequest("Invalid account for current user.");
+            }
+
+            var expense = new Expense()
+            {
+                AccountId = dto.AccountId,
+                CategoryId = dto.CategoryId,
+                Amount = dto.Amount,
+                Description = dto.Description,
+                Name = dto.Name,
+                IsActive = true,
+                DateCreated = DateTime.Now,
+            };
+
             _context.Expenses.Add(expense);
             await _context.SaveChangesAsync();
 

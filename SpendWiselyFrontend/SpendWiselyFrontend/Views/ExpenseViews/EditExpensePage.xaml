@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SpendWiselyFrontend.Views.ExpenseViews.AddExpensePage"
-             BackgroundColor="{StaticResource DarkColor}"
+             x:Class="SpendWiselyFrontend.Views.ExpenseViews.EditExpensePage"
              xmlns:vm="clr-namespace:SpendWiselyFrontend.ViewModels.ExpenseViewModels">
-    
+
     <ContentPage.BindingContext>
-    <vm:AddExpenseViewModel/>
+        <vm:EditExpenseViewModel/>
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal" Margin="0,5">
                 <Label Text="New Expense"
-            FontSize="20"
-            FontAttributes="Bold"
-            VerticalOptions="Start" 
-            HorizontalOptions="Start"
-            Margin="10,5"/>
-                <Button Text="🗑️" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0" Command="{Binding ClearInputsCommand}"/>
-                <Button Text="✔️" TextColor="Gray" HorizontalOptions="End" Margin="0,0,15,0" Command="{Binding SaveCommand}"/>
+                 FontSize="20"
+                 FontAttributes="Bold"
+                 VerticalOptions="Start" 
+                 HorizontalOptions="Start"
+                 Margin="10,5"/>
+                <Button Text="🧹" TextColor="Gray" HorizontalOptions="EndAndExpand" Margin="0,0" Command="{Binding ClearInputsCommand}"/>
+                <Button Text="✔️" TextColor="Gray" HorizontalOptions="End" Command="{Binding UpdateCommand}"/>
+                <Button Text="❌" TextColor="Gray" HorizontalOptions="End" Margin="0,0" Command="{Binding DeleteCommand}"/>
             </StackLayout>
 
             <Grid Margin="5,0">
@@ -35,11 +35,11 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
-                <Entry Placeholder="Name" Grid.Column="0" Text="{Binding Name}"/>
-                <Entry Placeholder="Amount" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" Text="{Binding Amount}"/>
+                <Entry Placeholder="Name" Grid.Column="0" Text="{Binding Item.Name}"/>
+                <Entry Placeholder="Amount" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" Text="{Binding Item.Amount}"/>
                 <Picker Title="Pick Account" Grid.Row="2" Grid.ColumnSpan="2" ItemsSource="{Binding Accounts}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedAccount}"/>
                 <Picker Title="Pick Category" Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding Categories}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedCategory}"/>
-                <Entry Placeholder="Description" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="100" VerticalTextAlignment="Top" Text="{Binding Description}"/>
+                <Entry Placeholder="Description" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="100" VerticalTextAlignment="Top" Text="{Binding Item.Description}"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

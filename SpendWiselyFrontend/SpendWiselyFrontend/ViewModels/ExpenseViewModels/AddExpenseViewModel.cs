@@ -1,15 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SpendWiselyFrontend;
-using SpendWiselyFrontend.ClientServices;
 using SpendWiselyFrontend.ClientServices.Abstractions;
 using SpendWiselyFrontend.Dtos;
 using SpendWiselyFrontend.Services.Abstractions;
 using SpendWiselyFrontend.ViewModels.Abstractions;
-using SpendWiselyFrontend.ViewModels.AccountViewModels;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -24,12 +18,37 @@ namespace SpendWiselyFrontend.ViewModels.ExpenseViewModels
         private int selectedCategoryId;
         private int selectedAccountId;
         private decimal amount;
+        private CategoryDto selectedCategory;
+        private AccountDto selectedAccount;
         private string description;
         private string name;
         private string emoji;
 
         #endregion
         #region Props
+        
+        public CategoryDto SelectedCategory
+        {
+            get => selectedCategory;
+            set
+            {
+                if(SetProperty(ref selectedCategory, value) && value != null)
+                {
+                    SelectedCategoryId = value.Id;
+                }
+            }
+        }
+        public AccountDto SelectedAccount
+        {
+            get => selectedAccount;
+            set
+            {
+                if (SetProperty(ref selectedAccount, value) && value != null)
+                {
+                    SelectedAccountId = value.Id;
+                }
+            }
+        }
         public int SelectedCategoryId
         {
             get => selectedCategoryId;
@@ -101,8 +120,8 @@ namespace SpendWiselyFrontend.ViewModels.ExpenseViewModels
                 Name = name,
                 Description = description,
                 AccountId = selectedAccountId,
-                CategoryId = selectedCategoryId,
                 Amount = amount,
+                CategoryId = selectedCategoryId,   
             };
 
 
